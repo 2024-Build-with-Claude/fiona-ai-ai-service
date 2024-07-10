@@ -82,7 +82,7 @@ We welcome contributions to Fiona AI! Please see our [CONTRIBUTING.md](link-to-c
 
 ## License
 
-This project is licensed under the [MIT License](link-to-license-file).
+This project is licensed under the MIT License.
 
 ## Acknowledgments
 
