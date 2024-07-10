@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 
 import requests
-from fastapi import APIRouter, File, Request, UploadFile, Depends
+from fastapi import APIRouter, Depends, File, Request, UploadFile
 from fastapi.responses import JSONResponse
 from langchain_anthropic import ChatAnthropic
 
@@ -45,7 +45,7 @@ async def upload_and_import_resume(request: Request, files: UploadFile = File(..
     extracted_text = extract_file_from_request(request, files)
 
     # import resume
-    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/import"
+    url = f"{settings.FIONA_AI_BASE_URL}/api/resume/import"
     # structured model
     model = ChatAnthropic(
         api_key=settings.ANTHROPIC_API_KEY,
@@ -76,7 +76,7 @@ def upload_and_update_resume(
     extracted_text = extract_file_from_request(request, file)
 
     # import resume
-    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/{fiona_ai_resume_id}"
+    url = f"{settings.FIONA_AI_BASE_URL}/api/resume/{fiona_ai_resume_id}"
     model = ChatAnthropic(
         api_key=settings.ANTHROPIC_API_KEY,
         model="claude-3-haiku-20240307",

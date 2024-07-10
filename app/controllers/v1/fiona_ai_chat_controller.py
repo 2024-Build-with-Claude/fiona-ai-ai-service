@@ -40,7 +40,7 @@ def get_resume_from_fiona_ai(headers: dict, fiona_ai_resume_id: str) -> str:
     """Get resume from resume api"""
     logging.info(f"start get_resume_from_fiona_ai: {fiona_ai_resume_id}")
 
-    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/{fiona_ai_resume_id}"
+    url = f"{settings.FIONA_AI_BASE_URL}/api/resume/{fiona_ai_resume_id}"
 
     payload = {}
 
@@ -101,7 +101,7 @@ def update_resume_experience_section(modification: str, request_id: str) -> str:
         "Cookie": simple_cache[request_id]["cookie"],
     }
     resume_id = simple_cache[request_id]["resume_data"]["id"]
-    url = settings.MUFASA_AI_BASE_URL + "/resume/" + resume_id
+    url = settings.FIONA_AI_BASE_URL + "/resume/" + resume_id
     response = requests.request("PATCH", url, headers=headers, data=payload)
 
     return response.text
@@ -140,7 +140,7 @@ def update_resume_education_section(modification: str, request_id: str) -> str:
         "Cookie": simple_cache[request_id]["cookie"],
     }
     resume_id = simple_cache[request_id]["resume_data"]["id"]
-    url = settings.MUFASA_AI_BASE_URL + "/resume/" + resume_id
+    url = settings.FIONA_AI_BASE_URL + "/resume/" + resume_id
     response = requests.request("PATCH", url, headers=headers, data=payload)
 
     return response.text
@@ -179,7 +179,7 @@ def update_resume_summary_section(modification: str, request_id: str) -> str:
         "Cookie": simple_cache[request_id]["cookie"],
     }
     resume_id = simple_cache[request_id]["resume_data"]["id"]
-    url = settings.MUFASA_AI_BASE_URL + "/resume/" + resume_id
+    url = settings.FIONA_AI_BASE_URL + "/resume/" + resume_id
     response = requests.request("PATCH", url, headers=headers, data=payload)
 
     return response.text
@@ -218,7 +218,7 @@ def update_resume_basics_section(modification: str, request_id: str) -> str:
         "Cookie": simple_cache[request_id]["cookie"],
     }
     resume_id = simple_cache[request_id]["resume_data"]["id"]
-    url = settings.MUFASA_AI_BASE_URL + "/resume/" + resume_id
+    url = settings.FIONA_AI_BASE_URL + "/resume/" + resume_id
     response = requests.request("PATCH", url, headers=headers, data=payload)
 
     return response.text

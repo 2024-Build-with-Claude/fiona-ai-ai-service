@@ -19,7 +19,7 @@ async def proxy_post(path: str, request: Request):
     body = await request.body()
     headers = forward_headers(request)
     response = requests.post(
-        f"{settings.MUFASA_AI_BASE_URL}/{path}",
+        f"{settings.FIONA_AI_BASE_URL}/{path}",
         data=body,
         headers=headers,
     )
@@ -34,7 +34,7 @@ async def proxy_post(path: str, request: Request):
 async def proxy_get(path: str, request: Request):
     headers = forward_headers(request)
     response = requests.get(
-        f"{settings.MUFASA_AI_BASE_URL}/{path}",
+        f"{settings.FIONA_AI_BASE_URL}/{path}",
         headers=headers,
     )
     return Response(
@@ -49,7 +49,7 @@ async def proxy_put(path: str, request: Request):
     body = await request.body()
     headers = forward_headers(request)
     response = requests.put(
-        f"{settings.MUFASA_AI_BASE_URL}/{path}",
+        f"{settings.FIONA_AI_BASE_URL}/{path}",
         data=body,
         headers=headers,
     )
@@ -64,7 +64,7 @@ async def proxy_put(path: str, request: Request):
 async def proxy_patch(path: str, request: Request):
     headers = forward_headers(request)
     response = requests.patch(
-        f"{settings.MUFASA_AI_BASE_URL}/{path}",
+        f"{settings.FIONA_AI_BASE_URL}/{path}",
         headers=headers,
     )
     return Response(
@@ -78,7 +78,7 @@ async def proxy_patch(path: str, request: Request):
 async def proxy_delete(path: str, request: Request):
     headers = forward_headers(request)
     response = requests.delete(
-        f"{settings.MUFASA_AI_BASE_URL}/{path}",
+        f"{settings.FIONA_AI_BASE_URL}/{path}",
         headers=headers,
     )
     return Response(

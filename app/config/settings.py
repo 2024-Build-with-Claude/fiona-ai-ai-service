@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     AUTH_METHOD: str = "local"
 
     # fiona_ai_base_url
-    MUFASA_AI_BASE_URL: str = os.environ.get("MUFASA_AI_BASE_URL")
+    FIONA_AI_BASE_URL: str = os.environ.get("FIONA_AI_BASE_URL")
 
     class Config:
         env_file = ".env"
