@@ -1,0 +1,50 @@
+b'{
+    "statusCode": 400,
+    "message": "Validation failed",
+    "errors": [
+        {
+            "code": "invalid_type",
+            "expected": "string",
+            "received": "undefined",
+            "path": [
+                "data",
+                "basics",
+                "headline"
+            ],
+            "message": "Required"
+        },
+        {
+            "code": "invalid_type",
+            "expected": "object",
+            "received": "undefined",
+            "path": [
+                "data",
+                "basics",
+                "url"
+            ],
+            "message": "Required"
+        },
+        {
+            "code": "invalid_type",
+            "expected": "array",
+            "received": "undefined",
+            "path": [
+                "data",
+                "basics",
+                "customFields"
+            ],
+            "message": "Required"
+        },
+        {
+            "code": "invalid_type",
+            "expected": "object",
+            "received": "undefined",
+            "path": [
+                "data",
+                "basics",
+                "picture"
+            ],
+            "message": "Required"
+        }
+    ]
+}'
