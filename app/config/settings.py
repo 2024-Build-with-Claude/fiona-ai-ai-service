@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     # auth method
     AUTH_METHOD: str = "local"
 
-    # mufasa_ai_base_url
+    # fiona_ai_base_url
     MUFASA_AI_BASE_URL: str = os.environ.get("MUFASA_AI_BASE_URL")
 
     class Config:

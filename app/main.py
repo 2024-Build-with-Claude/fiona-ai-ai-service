@@ -11,9 +11,9 @@ from starlette.requests import Request
 
 from app.config.logging_config import logger
 from app.config.settings import settings
-from app.controllers.v1.mufasa_ai_chat_controller import mufasa_ai_chat_controller
-from app.controllers.v1.mufasa_ai_proxy_controller import mufasa_ai_proxy_controller
-from app.controllers.v1.mufasa_ai_resume_controller import mufasa_ai_resume_controller
+from app.controllers.v1.fiona_ai_chat_controller import fiona_ai_chat_controller
+from app.controllers.v1.fiona_ai_proxy_controller import fiona_ai_proxy_controller
+from app.controllers.v1.fiona_ai_resume_controller import fiona_ai_resume_controller
 from app.infrastructure.apis import router as common_router
 from app.user.apis import router as user_router
 
@@ -57,18 +57,19 @@ app.include_router(user_router, prefix="/user", tags=["user"])
 ############################################################################################
 
 app.include_router(
-    router=mufasa_ai_resume_controller, prefix="/mufasa_ai/v1/resume", tags=["resume"]
+    router=fiona_ai_resume_controller, prefix="/fiona_ai/v1/resume", tags=["resume"]
 )
 
 app.include_router(
-    router=mufasa_ai_chat_controller, prefix="/mufasa_ai/v1/threads", tags=["chat"]
+    router=fiona_ai_chat_controller, prefix="/fiona_ai/v1/threads", tags=["chat"]
 )
 
 app.include_router(
-    router=mufasa_ai_proxy_controller, prefix="/mufasa_ai/v1/proxy", tags=["proxy"]
+    router=fiona_ai_proxy_controller, prefix="/fiona_ai/v1/proxy", tags=["proxy"]
 )
 
 ############################################################################################
+
 
 @app.on_event("startup")
 async def startup_event():

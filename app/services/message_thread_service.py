@@ -14,7 +14,7 @@ from app.models.message_thread_model import MessageThread
 
 def create_thread(
     db_session: Session,
-    mufasa_ai_resume_id: str | None = None,
+    fiona_ai_resume_id: str | None = None,
     whatsapp_id: str | None = None,
     open_ai_thread_id: str | None = None,
     line_id: str | None = None,
@@ -23,11 +23,11 @@ def create_thread(
     """
     Create a new thread
     """
-    logging.info(f"start create_thread: {mufasa_ai_resume_id}")
+    logging.info(f"start create_thread: {fiona_ai_resume_id}")
     message_thread = MessageThread(
         whatsapp_id=whatsapp_id,
         line_id=line_id,
-        mufasa_ai_resume_id=mufasa_ai_resume_id,
+        fiona_ai_resume_id=fiona_ai_resume_id,
         open_ai_thread_id=open_ai_thread_id,
         platform=platform,
     )
@@ -38,17 +38,17 @@ def create_thread(
     return message_thread
 
 
-def get_thread_by_mufasa_ai_resume_id(
-    mufasa_ai_resume_id: str, db_session: Session
+def get_thread_by_fiona_ai_resume_id(
+    fiona_ai_resume_id: str, db_session: Session
 ) -> MessageThread | None:
     """
-    Get a thread by mufasa_ai_resume_id
+    Get a thread by fiona_ai_resume_id
     """
-    logging.info(f"start get_thread_by_mufasa_ai_resume_id: {mufasa_ai_resume_id}")
+    logging.info(f"start get_thread_by_fiona_ai_resume_id: {fiona_ai_resume_id}")
     thread = (
         db_session.query(MessageThread)
-        .filter(MessageThread.mufasa_ai_resume_id == mufasa_ai_resume_id)
+        .filter(MessageThread.fiona_ai_resume_id == fiona_ai_resume_id)
         .first()
     )
-    logging.info(f"end get_thread_by_mufasa_ai_resume_id: {thread}")
+    logging.info(f"end get_thread_by_fiona_ai_resume_id: {thread}")
     return thread

@@ -22,7 +22,7 @@ from app.dto.resume_dto import (
 from app.services.message_service import create_message
 from app.services.message_thread_service import (
     create_thread,
-    get_thread_by_mufasa_ai_resume_id,
+    get_thread_by_fiona_ai_resume_id,
 )
 
 
@@ -30,17 +30,17 @@ class ChatMessage(BaseModel):
     message: str
 
 
-mufasa_ai_chat_controller = APIRouter()
+fiona_ai_chat_controller = APIRouter()
 
 simple_cache = {}
 
 
 # get resume
-def get_resume_from_mufasa_ai(headers: dict, mufasa_ai_resume_id: str) -> str:
+def get_resume_from_fiona_ai(headers: dict, fiona_ai_resume_id: str) -> str:
     """Get resume from resume api"""
-    logging.info(f"start get_resume_from_mufasa_ai: {mufasa_ai_resume_id}")
+    logging.info(f"start get_resume_from_fiona_ai: {fiona_ai_resume_id}")
 
-    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/{mufasa_ai_resume_id}"
+    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/{fiona_ai_resume_id}"
 
     payload = {}
 
@@ -51,7 +51,7 @@ def get_resume_from_mufasa_ai(headers: dict, mufasa_ai_resume_id: str) -> str:
         data=payload,
     )
 
-    logging.info(f"end get_resume_from_mufasa_ai: {response.text}")
+    logging.info(f"end get_resume_from_fiona_ai: {response.text}")
     return response.text
 
 
@@ -238,9 +238,9 @@ def update_resume_basics_section(modification: str, request_id: str) -> str:
 
 #     # parse the input to structure data
 
-#     mufasa_ai_resume_id = ""
+#     fiona_ai_resume_id = ""
 #     # update resume using API
-#     url = f"https://resume-gpt-backend-production.up.railway.app/api/resume/{mufasa_ai_resume_id}"
+#     url = f"https://resume-gpt-backend-production.up.railway.app/api/resume/{fiona_ai_resume_id}"
 
 #     payload = {}
 #     headers = {
@@ -253,11 +253,11 @@ def update_resume_basics_section(modification: str, request_id: str) -> str:
 #     return response.text
 
 
-@mufasa_ai_chat_controller.post("/{mufasa_ai_resume_id}/chats")
+@fiona_ai_chat_controller.post("/{fiona_ai_resume_id}/chats")
 async def create_chat(
     request: Request,
     message: ChatMessage,
-    mufasa_ai_resume_id: str,
+    fiona_ai_resume_id: str,
     db_session: Session = Depends(get_db),
 ):
     """
@@ -267,17 +267,17 @@ async def create_chat(
     logging.info(f"start create_chat: Request ID: {request.state.request_id}")
 
     # check if resume id have message_thread instance, if not, create a new one
-    thread_object = get_thread_by_mufasa_ai_resume_id(
-        mufasa_ai_resume_id=mufasa_ai_resume_id, db_session=db_session
+    thread_object = get_thread_by_fiona_ai_resume_id(
+        fiona_ai_resume_id=fiona_ai_resume_id, db_session=db_session
     )
     if thread_object is None:
         logging.info(
-            f"No existing thread found, creating new thread for resume id {mufasa_ai_resume_id}"
+            f"No existing thread found, creating new thread for resume id {fiona_ai_resume_id}"
         )
         thread_object = create_thread(
-            mufasa_ai_resume_id=mufasa_ai_resume_id,
+            fiona_ai_resume_id=fiona_ai_resume_id,
             db_session=db_session,
-            platform="mufasa_ai",
+            platform="fiona_ai",
         )
     tools = [
         # update_resume,
@@ -309,9 +309,9 @@ async def create_chat(
         "Cookie": request.headers.get("Cookie", ""),
     }
 
-    # get resume data from mufasa_ai
-    resume_data = get_resume_from_mufasa_ai(
-        headers=headers, mufasa_ai_resume_id=mufasa_ai_resume_id
+    # get resume data from fiona_ai
+    resume_data = get_resume_from_fiona_ai(
+        headers=headers, fiona_ai_resume_id=fiona_ai_resume_id
     )
 
     # store resume data in cache

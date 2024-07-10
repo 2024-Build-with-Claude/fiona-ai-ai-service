@@ -17,8 +17,8 @@ class MessageThread(DBBase):
     # wa_id = Column(String(36))
     line_id = Column(String(36), nullable=True)
     whatsapp_id = Column(String(36), nullable=True)
-    mufasa_ai_resume_id = Column(String(36), nullable=True)
+    fiona_ai_resume_id = Column(String(36), nullable=True)
     open_ai_thread_id = Column(String, unique=True)
     messages = relationship("Message", back_populates="thread")
     platform = Column(String(10), nullable=True, default="whatsapp")
-    # platform can be: mufasa_ai, line, whatsapp
+    # platform can be: fiona_ai, line, whatsapp

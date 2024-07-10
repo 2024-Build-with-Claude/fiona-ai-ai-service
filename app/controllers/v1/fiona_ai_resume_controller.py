@@ -12,7 +12,7 @@ from app.config.settings import settings
 from app.dto.resume_dto import RootModel
 from app.services.resume_structure_service import extract_text_from_pdf_pypdf
 
-mufasa_ai_resume_controller = APIRouter()
+fiona_ai_resume_controller = APIRouter()
 
 
 # extract the file from request
@@ -40,7 +40,7 @@ def extract_file_from_request(request: Request, file: UploadFile = File(...)):
     return extracted_text
 
 
-@mufasa_ai_resume_controller.post("")
+@fiona_ai_resume_controller.post("")
 async def upload_and_import_resume(request: Request, files: UploadFile = File(...)):
     extracted_text = extract_file_from_request(request, files)
 
@@ -67,16 +67,16 @@ async def upload_and_import_resume(request: Request, files: UploadFile = File(..
     return response.json()
 
 
-@mufasa_ai_resume_controller.post("/{mufasa_ai_resume_id}/update")
+@fiona_ai_resume_controller.post("/{fiona_ai_resume_id}/update")
 def upload_and_update_resume(
-    mufasa_ai_resume_id: str,
+    fiona_ai_resume_id: str,
     request: Request,
     file: UploadFile = File(...),
 ):
     extracted_text = extract_file_from_request(request, file)
 
     # import resume
-    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/{mufasa_ai_resume_id}"
+    url = f"{settings.MUFASA_AI_BASE_URL}/api/resume/{fiona_ai_resume_id}"
     model = ChatAnthropic(
         api_key=settings.ANTHROPIC_API_KEY,
         model="claude-3-haiku-20240307",

@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request, Response
 
 from app.config.settings import settings
 
-mufasa_ai_proxy_controller = APIRouter()
+fiona_ai_proxy_controller = APIRouter()
 
 
 def forward_headers(request: Request):
@@ -14,7 +14,7 @@ def forward_headers(request: Request):
     return headers
 
 
-@mufasa_ai_proxy_controller.post("/{path:path}")
+@fiona_ai_proxy_controller.post("/{path:path}")
 async def proxy_post(path: str, request: Request):
     body = await request.body()
     headers = forward_headers(request)
@@ -30,7 +30,7 @@ async def proxy_post(path: str, request: Request):
     )
 
 
-@mufasa_ai_proxy_controller.get("/{path:path}")
+@fiona_ai_proxy_controller.get("/{path:path}")
 async def proxy_get(path: str, request: Request):
     headers = forward_headers(request)
     response = requests.get(
@@ -44,7 +44,7 @@ async def proxy_get(path: str, request: Request):
     )
 
 
-@mufasa_ai_proxy_controller.put("/{path:path}")
+@fiona_ai_proxy_controller.put("/{path:path}")
 async def proxy_put(path: str, request: Request):
     body = await request.body()
     headers = forward_headers(request)
@@ -60,7 +60,7 @@ async def proxy_put(path: str, request: Request):
     )
 
 
-@mufasa_ai_proxy_controller.patch("/{path:path}")
+@fiona_ai_proxy_controller.patch("/{path:path}")
 async def proxy_patch(path: str, request: Request):
     headers = forward_headers(request)
     response = requests.patch(
@@ -74,7 +74,7 @@ async def proxy_patch(path: str, request: Request):
     )
 
 
-@mufasa_ai_proxy_controller.delete("/{path:path}")
+@fiona_ai_proxy_controller.delete("/{path:path}")
 async def proxy_delete(path: str, request: Request):
     headers = forward_headers(request)
     response = requests.delete(
