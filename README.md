@@ -69,7 +69,7 @@ uvicorn main:app --reload
 - Update your SQLAlchemy models
 - Create a new migration:
   ```bash
-  alembic revision --autogenerate -m "Description of changes"
+  alembic revision --autogenerate -m "Description of changes {time}"
   ```
 - Apply the migration:
   ```bash
@@ -78,7 +78,7 @@ uvicorn main:app --reload
 
 ## Contributing
 
-We welcome contributions to Fiona AI! Please see our [CONTRIBUTING.md](link-to-contributing-file) for details on how to get started.
+We welcome contributions to Fiona AI!
 
 ## License
 
